@@ -1,0 +1,20 @@
+.login__container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login__title{
+  font-size: 26px;
+}
+
+.login__input {
+  width: 100%;
+  padding: 8px 15px;
+  margin: 5px 0;
+  border: 2px solid teal;
+}
+.btn__container{
+  text-align: right;
+}

@@ -1,0 +1,10 @@
+.myBtn {
+  border: 2px solid teal;
+  padding: 5px;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+.myBtn:hover{
+  opacity: .5;
+  transition: opacity .3s ease;
+}

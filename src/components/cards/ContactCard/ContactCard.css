@@ -1,0 +1,21 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border: 2px solid teal;
+  margin-top: 5px;
+}
+.card__info {
+  display: flex;
+  flex-direction: column;
+}
+.card__text {
+  font-size: 16px;
+  color: grey;
+}
+.card__btn-delete {
+  font-size: 16px;
+  color: grey;
+}
+

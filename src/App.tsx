@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import './styles/App.css'
+import {BrowserRouter} from "react-router-dom";
+import {AppRouter} from "./router/AppRouter";
+import {Provider, useDispatch} from "react-redux";
+import {store} from "./store";
+import {UserAction, UserActionType} from "./types/user";
+import {Dispatch} from "redux";
 
 function App() {
+  // const dispatch:Dispatch<UserAction> = useDispatch()
+  //
+  // useEffect(() => {
+  //   try {
+  //     if (localStorage.getItem('auth')){
+  //       dispatch({type: UserActionType.USER_LOGIN_SUCCESS, payload: true})
+  //     }
+  //   } catch (e) {
+  //     console.log(`Ошибка получения ключа пользователя ${e}`)
+  //   }
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <AppRouter />
+        </BrowserRouter>
+      </Provider>
   );
 }
 
