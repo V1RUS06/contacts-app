@@ -1,7 +1,7 @@
-import * as ContactsActionCreator from './contacts'
 import {AuthActionCreators} from "../reducers/auth/action-creators";
+import {UserActionCreators} from "../reducers/user/action-creators";
 
 export default {
-  ...ContactsActionCreator,
+  ...UserActionCreators,
   ...AuthActionCreators
 }
