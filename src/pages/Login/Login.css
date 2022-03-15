@@ -16,5 +16,7 @@
   border: 2px solid teal;
 }
 .btn__container{
+  display: flex;
   text-align: right;
+  flex-direction: row;
 }

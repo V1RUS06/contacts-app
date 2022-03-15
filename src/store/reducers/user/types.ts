@@ -15,6 +15,7 @@ export enum UserActionEnum {
   UPDATE_USER_DATA = "UPDATE_USER_DATA",
   ADD_CONTACT = "ADD_CONTACT",
   DELETE_CONTACT = "DELETE_CONTACT",
+  EDIT_CONTACT = "EDIT_CONTACT"
 }
 
 
@@ -40,6 +41,10 @@ export interface DeleteContactAction {
   type: UserActionEnum.DELETE_CONTACT;
   payload: IUserContact[];
 }
+export interface EditContactAction {
+  type: UserActionEnum.EDIT_CONTACT;
+  payload: IUserContact;
+}
 
 
 
@@ -48,5 +53,6 @@ export type UserAction =
   SetErrorAction |
   UpdateUserDataAction |
   AddContactAction |
-  DeleteContactAction
+  DeleteContactAction |
+  EditContactAction
 

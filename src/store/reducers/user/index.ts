@@ -27,6 +27,19 @@ export const userReducer = (state = initialState, action: UserAction) : UserStat
     case UserActionEnum.DELETE_CONTACT:
       return {...state, user: {...state.user, contacts: [...action.payload]}}
 
+    case UserActionEnum.EDIT_CONTACT:
+    {
+      const changedContacts = state.user.contacts.map(contact => {
+       if (contact.id === action.payload.id) {
+         return action.payload
+       }
+       return contact
+      })
+
+      return {...state, user: {...state.user, contacts: changedContacts}}
+    }
+
+
 
 
     // case UserActionType.FETCH_CONTACTS:

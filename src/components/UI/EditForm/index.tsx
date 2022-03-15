@@ -1,38 +1,50 @@
-import React, { useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import MyButton from "../button/MyButton";
-import './ContactForm.css'
+import {IUserContact} from "../../../models/IUser";
 import {useActions} from "../../../hooks/useActions";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 
 interface Props {
-  setVisible: (arg: boolean) => void
+  setVisible: (arg: boolean) => void,
+  editContact: null| IUserContact
 }
 
-const ContactForm: React.FC<Props> = ({setVisible}) => {
+const EditForm: FC<Props> = ({setVisible, editContact}) => {
   const [contact, setContact] = useState({ phone: '', name: ''})
-
+  const {editUserContact, changeContacts} = useActions();
   const {user} = useTypedSelector(state => state.user)
 
-  const {addContact, addUserContacts} = useActions()
-
-
-  const addNewPost = (e: any) => {
-    e.preventDefault();
-    const contact: {id: string, phone: string, name: string} = {
-      id: JSON.stringify(Date.now()),
-      phone: e.target[1].value,
-      name: e.target[0].value
+  useEffect(() => {
+    if (editContact){
+      setContact({phone: editContact.phone, name: editContact.name})
     }
-    addContact(contact)
+  }, [editContact])
 
-    console.log('Contacts', user.contacts)
+
+
+
+  const onEditClick = (e: any) => {
+    e.preventDefault();
+    const newContact = {
+      id: editContact?.id || '',
+      phone: contact.phone,
+      name: contact.name
+    }
+
+    const changedContacts = user.contacts.map(contact => {
+      if (contact.id === editContact?.id) {
+        return newContact
+      }
+      return contact
+    })
+    editUserContact(newContact)
     setContact({ phone: '', name: ''})
-    addUserContacts({...user, contacts: [...user.contacts, contact]})
+    changeContacts({...user, contacts: changedContacts})
 
   }
 
   return (
-    <form onSubmit={addNewPost}>
+    <form onSubmit={onEditClick}>
       <input
         value={contact.name}
         onChange={e => setContact({...contact, name: e.target.value})}
@@ -51,10 +63,10 @@ const ContactForm: React.FC<Props> = ({setVisible}) => {
         onClick={() => {
           setVisible(false)
         }}>
-        Создать контакт
+        Изменить контакт
       </MyButton>
     </form>
   );
 };
 
-export default ContactForm;
+export default EditForm;
