@@ -2,11 +2,11 @@ export interface IUser {
   id: string,
   username: string
   password: string
-  contacts: IUserContacts[]
+  contacts: IUserContact[]
 }
 
-export interface IUserContacts {
-  "id": number,
+export interface IUserContact {
+  "id": string,
   "name": string,
   "phone": string
 }

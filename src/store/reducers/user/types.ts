@@ -1,4 +1,4 @@
-import {IUser} from "../../../models/IUser";
+import {IUser, IUserContact} from "../../../models/IUser";
 
 
 export interface UserState {
@@ -13,6 +13,7 @@ export enum UserActionEnum {
   SET_ERROR = "SET_ERROR",
   SET_IS_LOADING = "SET_IS_LOADING",
   UPDATE_USER_DATA = "UPDATE_USER_DATA",
+  ADD_CONTACT = "ADD_CONTACT",
 }
 
 
@@ -30,12 +31,16 @@ export interface SetErrorAction {
   type: UserActionEnum.SET_ERROR;
   payload: string;
 }
-
+export interface AddContactAction {
+  type: UserActionEnum.ADD_CONTACT;
+  payload: IUserContact;
+}
 
 
 
 export type UserAction =
   SetUserAction |
   SetErrorAction |
-  UpdateUserDataAction
+  UpdateUserDataAction |
+  AddContactAction
 

@@ -10,16 +10,18 @@ interface Props {
 const ContactForm: React.FC<Props> = ({setVisible}) => {
   const [contact, setContact] = useState({id: '', phone: '', name: ''})
 
-  const {} = useActions()
+  const {addContact} = useActions()
 
 
   const addNewPost = (e: any) => {
     e.preventDefault();
-    const data: {phone: string, name: string} = {
+    const contact: {id: string, phone: string, name: string} = {
+      id: JSON.stringify(Date.now()),
       phone: e.target[1].value,
       name: e.target[0].value
     }
-    console.log('input', data)
+    addContact(contact)
+    console.log('input', contact)
   }
 
   return (
