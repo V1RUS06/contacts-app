@@ -8,7 +8,7 @@ interface Props {
 }
 
 const ContactForm: React.FC<Props> = ({setVisible}) => {
-  const [contact, setContact] = useState({id: '', phone: '', name: ''})
+  const [contact, setContact] = useState({ phone: '', name: ''})
 
   const {addContact} = useActions()
 
@@ -44,7 +44,7 @@ const ContactForm: React.FC<Props> = ({setVisible}) => {
         onClick={() => {
           setVisible(false)
         }}>
-        Создать пост
+        Создать контакт
       </MyButton>
     </form>
   );
