@@ -6,6 +6,7 @@ export enum UserActionType {
   FETCH_CONTACTS_SUCCESS = "FETCH_CONTACTS_SUCCESS",
   FETCH_CONTACTS_ERROR = "FETCH_CONTACTS_ERROR",
   USER_ADD_CONTACT = "USER_ADD_CONTACT",
+  USER_DELETE_CONTACT = "USER_DELETE_CONTACT",
 
 }
 interface UserLoginSuccessAction {
@@ -36,7 +37,10 @@ interface FetchContactsErrorAction {
 
 interface UserAddContactAction {
   type: UserActionType.USER_ADD_CONTACT,
-  payload: UserContacts[]
+  payload: UserContacts
+}
+interface UserDeleteContactAction {
+  type: UserActionType.USER_DELETE_CONTACT
 }
 
 export interface UserState {
@@ -56,4 +60,4 @@ export interface UserContacts {
   name: string,
 }
 
-export type UserAction = UserLoginSuccessAction | UserAddContactAction | UserLoginErrorAction | FetchContactsSuccessAction | UserLogoutAction | FetchContactsErrorAction | FetchContactsAction
+export type UserAction = UserLoginSuccessAction | UserDeleteContactAction | UserAddContactAction | UserLoginErrorAction | FetchContactsSuccessAction | UserLogoutAction | FetchContactsErrorAction | FetchContactsAction

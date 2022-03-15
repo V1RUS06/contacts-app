@@ -1,31 +1,25 @@
 import React, {useEffect} from 'react';
 import './styles/App.css'
-import {BrowserRouter} from "react-router-dom";
 import {AppRouter} from "./router/AppRouter";
-import {Provider, useDispatch} from "react-redux";
-import {store} from "./store";
-import {UserAction, UserActionType} from "./types/user";
-import {Dispatch} from "redux";
+import {useActions} from "./hooks/useActions";
 
 function App() {
-  // const dispatch:Dispatch<UserAction> = useDispatch()
-  //
-  // useEffect(() => {
-  //   try {
-  //     if (localStorage.getItem('auth')){
-  //       dispatch({type: UserActionType.USER_LOGIN_SUCCESS, payload: true})
-  //     }
-  //   } catch (e) {
-  //     console.log(`Ошибка получения ключа пользователя ${e}`)
-  //   }
-  // }, []);
+  const { setIsAuth, updateUserData } = useActions()
+
+  useEffect(() => {
+    if (localStorage.getItem('auth')) {
+      const userId = localStorage.getItem('userId')
+      updateUserData(userId)
+
+      setIsAuth(true)
+    }
+
+  }, [])
 
   return (
-      <Provider store={store}>
-        <BrowserRouter>
-          <AppRouter />
-        </BrowserRouter>
-      </Provider>
+    <div>
+      <AppRouter/>
+    </div>
   );
 }
 

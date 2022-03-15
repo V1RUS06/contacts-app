@@ -31,7 +31,9 @@ export const userReducer = (state = initialState, action: UserAction) : UserStat
       return {...state, loading: false, error: action.payload}
 
     case UserActionType.USER_ADD_CONTACT:
-      return {...state, user: {...state.user, contacts: action.payload} }
+      return {...state, loading: false, user: {...state.user,  contacts: [...state.user.contacts, action.payload ]} }
+    case UserActionType.USER_DELETE_CONTACT:
+      return {...state }
 
     default:
       return state

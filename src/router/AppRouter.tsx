@@ -3,12 +3,12 @@ import {privateRoutes, publicRoutes} from "./index";
 import {Redirect, Switch, Route} from "react-router-dom"
 import {useTypedSelector} from "../hooks/useTypedSelector";
 
-
 export const AppRouter = () => {
-  const {user} = useTypedSelector(state => state.user)
+  const {isAuth} = useTypedSelector(state => state.auth)
+  console.log('auth', isAuth)
 
   return (
-    user.isAuth
+    isAuth
       ? <Switch>
         {privateRoutes.map(route =>
           <Route

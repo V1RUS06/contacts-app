@@ -1,27 +1,29 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import MyButton from "../button/MyButton";
 import './ContactForm.css'
-import {useDispatch} from "react-redux";
-import {Dispatch} from "redux";
-import {UserAction, UserActionType, UserContacts} from "../../../types/user";
+import { UserContacts} from "../../../types/user";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {useActions} from "../../../hooks/useActions";
 
-const ContactForm = () => {
+interface Props {
+  setVisible: (arg: boolean) => void
+}
+
+const ContactForm: React.FC<Props> = ({setVisible}) => {
   const [contact, setContact] = useState({id: '', phone: '', name: ''})
 
-  const dispatch:Dispatch<UserAction> = useDispatch()
-  const {contacts} = useTypedSelector(state => state.user.user)
+  const {addContacts} = useActions()
+  const {user} = useTypedSelector(state => state.auth)
 
   const addNewPost = (e: any) => {
     e.preventDefault();
-    const data: UserContacts[] = [
-      ...contacts, {
-      id: Date.now(),
+    const data: UserContacts = {
       phone: e.target[1].value,
       name: e.target[0].value
-    }]
-    console.log('CONTACTS', contacts)
-    dispatch({type: UserActionType.USER_ADD_CONTACT, payload: data})
+    }
+    console.log('input', data)
+    console.log('CONTACTS', user.contacts)
+    addContacts(data);
   }
 
   return (
@@ -40,7 +42,12 @@ const ContactForm = () => {
         placeholder="Номер телефона"
         className="form__input"
       />
-      <MyButton>Создать пост</MyButton>
+      <MyButton
+        onClick={() => {
+          setVisible(false)
+        }}>
+        Создать пост
+      </MyButton>
     </form>
   );
 };

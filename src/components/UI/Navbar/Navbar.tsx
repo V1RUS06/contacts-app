@@ -1,22 +1,20 @@
 import React from 'react';
 import MyButton from '../button/MyButton';
 import './Navbar.css'
-import {UserAction, UserActionType} from "../../../types/user";
-import {useDispatch} from "react-redux";
-import {Dispatch} from "redux";
+import {useActions} from "../../../hooks/useActions";
 
 const Navbar = () => {
-  const dispatch:Dispatch<UserAction> = useDispatch()
 
-  const logout = () => {
-    console.log('click')
-    dispatch({type: UserActionType.USER_LOGOUT, payload: false})
+  const {logout} = useActions()
+
+  const handleLogout = () => {
+    logout()
     localStorage.removeItem('auth')
   }
 
   return (
     <div className="navbar">
-      <MyButton onClick={logout}>
+      <MyButton onClick={handleLogout}>
         Выйти
       </MyButton>
     </div>

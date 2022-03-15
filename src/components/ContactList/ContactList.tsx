@@ -1,18 +1,22 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import ContactCard from "../cards/ContactCard";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import MyButton from "../UI/button/MyButton";
 import Modal from "../UI/Modal/Modal";
 import ContactForm from "../UI/ContactForm/ContactForm";
+import {useActions} from "../../hooks/useActions";
+
 
 const ContactList = () => {
-  const {user} = useTypedSelector(state => state.user)
-  const [contacts, setContacts] = useState(user.contacts)
+  const {user} = useTypedSelector(state => state.auth)
   const [modal, setModal] = useState<boolean>(false)
+  const {deleteContact} = useActions()
 
-  const remove = (id: any) => {
-    setContacts(contacts.filter(item => item.id !== id))
+
+  const remove = (id: string | number | undefined) => {
+    // setContacts(contacts?.filter(item => item.id !== id))
+    deleteContact(id)
   }
 
   return (
@@ -24,7 +28,7 @@ const ContactList = () => {
       </div>
 
       <Modal visible={modal} setVisible={setModal}>
-        <ContactForm />
+        <ContactForm setVisible={setModal}/>
       </Modal>
 
       <div>
@@ -36,7 +40,7 @@ const ContactList = () => {
       </h1>
 
       <TransitionGroup>
-        {contacts.map(user =>
+        {user.contacts?.map(user =>
           <CSSTransition
             key={user.id}
             timeout={500}

@@ -1,0 +1,75 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "user",
+      "password": "123",
+      "contacts": [
+        {
+          "id": 1,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        },
+        {
+          "id": 2,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "username": "admin",
+      "password": "123",
+      "contacts": [
+        {
+          "id": 1,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        },
+        {
+          "id": 2,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        },
+        {
+          "id": 3,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "username": "denis",
+      "password": "123",
+      "contacts": [
+        {
+          "id": 1,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        },
+        {
+          "id": 2,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        },
+        {
+          "id": 3,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        },
+        {
+          "id": 4,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        },
+        {
+          "id": 5,
+          "name": "Denis Fomin",
+          "phone": "+ 7-987-123-45-67"
+        }
+      ]
+    }
+  ]
+}
