@@ -24,6 +24,10 @@ export const userReducer = (state = initialState, action: UserAction) : UserStat
     case UserActionEnum.ADD_CONTACT:
       return {...state, user: {...state.user, contacts: [...state.user.contacts, action.payload]}}
 
+    case UserActionEnum.DELETE_CONTACT:
+      return {...state, user: {...state.user, contacts: [...action.payload]}}
+
+
 
     // case UserActionType.FETCH_CONTACTS:
     //   return {...state, loading: true}

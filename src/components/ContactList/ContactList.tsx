@@ -11,11 +11,12 @@ import {useActions} from "../../hooks/useActions";
 const ContactList = () => {
   const {user} = useTypedSelector(state => state.user)
   const [modal, setModal] = useState<boolean>(false)
-  const {} = useActions()
+  const {deleteContact} = useActions()
 
 
   const remove = (id: string | number | undefined) => {
-    // setContacts(contacts?.filter(item => item.id !== id))
+    const newContactList = user.contacts.filter(contact => contact.id !== id)
+    deleteContact(newContactList)
   }
 
   return (
