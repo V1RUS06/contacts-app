@@ -3,16 +3,13 @@ import {
   SetAuthAction,
   SetErrorAction,
   SetIsLoadingAction,
-  SetUserAction,
-  UpdateUserDataAction
 } from "./types";
 import {IUser} from "../../../models/IUser";
 import {AppDispatch} from "../../index";
 import axios from "axios";
+import {UserActionCreators} from "../user/action-creators";
 
 export const AuthActionCreators = {
-  setUser: (user: IUser): SetUserAction => ({type: AuthActionEnum.SET_USER, payload: user}),
-  updateUser: (user: IUser): UpdateUserDataAction => ({type: AuthActionEnum.UPDATE_USER_DATA, payload: user}),
   setIsAuth: (auth: boolean): SetAuthAction => ({type: AuthActionEnum.SET_AUTH, payload: auth}),
   setIsLoading: (payload: boolean): SetIsLoadingAction => ({type: AuthActionEnum.SET_IS_LOADING, payload: payload}),
   setError: (payload: string): SetErrorAction => ({type: AuthActionEnum.SET_ERROR, payload: payload}),
@@ -29,7 +26,7 @@ export const AuthActionCreators = {
         localStorage.setItem('username', mockUser.username)
         localStorage.setItem('userId', JSON.stringify(mockUser.id))
         dispatch(AuthActionCreators.setIsAuth(true))
-        dispatch(AuthActionCreators.setUser(mockUser))
+        dispatch(UserActionCreators.setUser(mockUser))
       } else {
         dispatch(AuthActionCreators.setError('Некорректный логин или пароль'))
       }
@@ -41,13 +38,13 @@ export const AuthActionCreators = {
   logout: () => async (dispatch: AppDispatch) => {
     localStorage.removeItem('auth')
     localStorage.removeItem('username')
-    dispatch(AuthActionCreators.setUser({} as IUser))
+    dispatch(UserActionCreators.setUser({} as IUser))
     dispatch(AuthActionCreators.setIsAuth(false))
   },
   updateUserData: (id: string | null) => async (dispatch: AppDispatch) => {
     try {
       const response = await axios.get<IUser[]>(`http://localhost:3001/users?id=${id}`)
-      dispatch(AuthActionCreators.updateUser(response.data[0]))
+      dispatch(UserActionCreators.updateUser(response.data[0]))
     } catch (e) {
       console.log('Ошибка при обновлении пользователя', e)
     }
