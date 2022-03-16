@@ -39,8 +39,8 @@
       "contacts": [
         {
           "id": 1,
-          "name": "Denis Fomin",
-          "phone": "+ 7-987-123-45-67"
+          "phone": "+ 7-987-123-45-77",
+          "name": "Denis Fomin"
         },
         {
           "id": 2,
