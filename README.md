@@ -7,7 +7,7 @@
 `npm start`
 
 Для запуска сервера: </br>
-`npm run dev`
+`npm run server`
 
 
 ### Авторизация: </br>
